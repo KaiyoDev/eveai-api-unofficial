@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eveai-api-unofficial</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+      body {
+        margin: 0;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 20px 72px;
+      }
+      h1, h2, h3 {
+        line-height: 1.2;
+        color: #f8fafc;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        margin-bottom: 12px;
+      }
+      a {
+        color: #38bdf8;
+      }
+      code, pre {
+        font-family: "JetBrains Mono", Consolas, monospace;
+      }
+      pre {
+        overflow-x: auto;
+        padding: 18px;
+        border-radius: 14px;
+        background: #020617;
+        border: 1px solid #1e293b;
+      }
+      .hero {
+        padding: 32px;
+        border: 1px solid #1e293b;
+        border-radius: 24px;
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(15, 23, 42, 0.9));
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin: 28px 0;
+      }
+      .card {
+        padding: 18px;
+        border: 1px solid #1e293b;
+        border-radius: 18px;
+        background: #111827;
+      }
+      .muted {
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <p class="muted">Node.js unofficial client</p>
+        <h1>eveai-api-unofficial</h1>
+        <p>Gọi EverAI Text-To-Speech bằng cookie đăng nhập của chính bạn, dùng được như thư viện hoặc CLI.</p>
+        <pre><code>npm install eveai-api-unofficial</code></pre>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h3>Dùng như thư viện</h3>
+          <p>Import package, truyền cookie hợp lệ, gọi <code>textToSpeech</code> và nhận <code>audioUrl</code>.</p>
+        </article>
+        <article class="card">
+          <h3>Không lưu secret</h3>
+          <p><code>.env</code>, cookie, key và file local đã được ignore để publish GitHub/npm an toàn hơn.</p>
+        </article>
+        <article class="card">
+          <h3>Có log đầy đủ</h3>
+          <p>Bật <code>LOG_LEVEL=info</code> hoặc <code>debug</code> khi cần theo dõi request/polling.</p>
+        </article>
+      </section>
+
+      <h2>Ví dụ nhanh</h2>
+      <pre><code>const { createClient } = require("eveai-api-unofficial");
+
+const client = createClient({
+  cookie: "csrftoken=...; sessionid=...",
+  logLevel: "info",
+});
+
+const result = await client.textToSpeech({
+  text: "Xin chào từ EverAI TTS",
+  modelId: "everai-v1.5",
+  audioType: "mp3",
+});
+
+console.log(result.audioUrl);</code></pre>
+
+      <h2>CLI</h2>
+      <pre><code>cp .env.example .env
+npm run tts
+node bin/eveai-tts.js --text "Xin chào" --format wav</code></pre>
+
+      <h2>Bảo mật</h2>
+      <p>Cookie/session có quyền truy cập tài khoản EverAI, hãy xem như token đăng nhập. Không commit <code>.env</code> thật và không publish cookie lên npm.</p>
+
+      <p class="muted">Xem thêm tài liệu chi tiết trong <code>docs/index.md</code>.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "name": "eveai-api-unofficial",
+  "version": "0.2.0",
+  "description": "Unofficial EverAI Text-To-Speech client using user-provided cookies.",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "eveai-tts": "bin/eveai-tts.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "docs",
+    ".env.example",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "scripts": {
+    "tts": "node bin/eveai-tts.js",
+    "docs:dev": "vite --host 0.0.0.0",
+    "docs:build": "vite build",
+    "docs:preview": "vite preview --host 0.0.0.0",
+    "prepack": "node -e \"require('./src'); console.log('package ok')\""
+  },
+  "keywords": [
+    "everai",
+    "tts",
+    "text-to-speech",
+    "unofficial",
+    "cookie"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "latest",
+    "vite": "latest",
+    "vue": "latest"
+  }
+}
